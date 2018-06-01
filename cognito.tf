@@ -55,10 +55,6 @@ resource "aws_cognito_user_pool" "pool" {
   alias_attributes           = ["email", "preferred_username"]
   auto_verified_attributes   = ["email"]
 
-  user_pool_id        = "${aws_cognito_user_pool.pool.id}"
-  generate_secret     = true
-  explicit_auth_flows = ["ADMIN_NO_SRP_AUTH"]
-
   verification_message_template {
     default_email_option = "CONFIRM_WITH_CODE"
   }
@@ -110,4 +106,11 @@ resource "aws_cognito_user_pool" "pool" {
     "Name"    = "FooBar"
     "Project" = "Terraform"
   }
+}
+
+resource "aws_cognito_user_pool_client" "client" {
+  name                = "client"
+  user_pool_id        = "${aws_cognito_user_pool.pool.id}"
+  generate_secret     = true
+  explicit_auth_flows = ["ADMIN_NO_SRP_AUTH"]
 }
