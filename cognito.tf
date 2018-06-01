@@ -1,5 +1,5 @@
 resource "aws_iam_role" "cidp" {
-  name = "terraform-example-cognito-idp"
+  name = "terraform-example-cognito-raja"
   path = "/service-role/"
 
   assume_role_policy = <<POLICY
