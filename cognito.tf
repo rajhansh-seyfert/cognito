@@ -48,11 +48,16 @@ EOF
 
 resource "aws_cognito_user_pool" "pool" {
   name                       = "terraform-example"
+  mfa_configuration          = "ON"
   email_verification_subject = "Device Verification Code"
   email_verification_message = "Please use the following code {####}"
   sms_verification_message   = "{####} Baz"
   alias_attributes           = ["email", "preferred_username"]
   auto_verified_attributes   = ["email"]
+
+  user_pool_id        = "${aws_cognito_user_pool.pool.id}"
+  generate_secret     = true
+  explicit_auth_flows = ["ADMIN_NO_SRP_AUTH"]
 
   verification_message_template {
     default_email_option = "CONFIRM_WITH_CODE"
