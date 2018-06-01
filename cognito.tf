@@ -1,4 +1,3 @@
-
 resource "aws_iam_role" "cidp" {
   name = "terraform-example-cognito-idp"
   path = "/service-role/"
@@ -71,8 +70,6 @@ resource "aws_cognito_user_pool" "pool" {
     require_uppercase = true
   }
 
- 
-
   schema {
     attribute_data_type      = "String"
     developer_only_attribute = false
@@ -108,3 +105,4 @@ resource "aws_cognito_user_pool" "pool" {
     "Name"    = "FooBar"
     "Project" = "Terraform"
   }
+}
